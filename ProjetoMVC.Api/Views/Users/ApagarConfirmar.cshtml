@@ -1,0 +1,21 @@
+﻿@model UserModel
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Confirmação";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4" style="width: 380px; border-radius: 1rem;">
+        <div class="card-body text-center">
+            <h1 class="mb-3 h4">Realmente deseja apagar o usuário @Model.Nome?</h1>
+            <p class="mb-4" style="font-size: 18px">O usuário <strong>@Model.Nome</strong> será removido.</p>
+
+            <div class="d-flex gap-2">
+                <a class="btn btn-secondary w-50" asp-controller="Users" asp-action="Index">Cancelar</a>
+                <a class="btn btn-danger w-50" asp-route-id="@Model.Id" asp-controller="Users" asp-action="Apagar">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Sair";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4" style="width: 380px; border-radius: 1rem;">
+        <div class="card-body text-center">
+            <h1 class="h4 mb-3" style="font-weight: 400">Deseja realmente finalizar sua sessão?</h1>
+            <div class="d-flex gap-2">
+                <a class="btn btn-secondary w-50" asp-controller="Contatos" asp-action="Index">Voltar</a>
+                <a class="btn btn-danger w-50" asp-controller="Home" asp-action="Sair">Sair</a>
+            </div>
+        </div>
+    </div>
+</div>

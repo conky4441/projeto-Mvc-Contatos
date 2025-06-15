@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Confirmação de Exclusão";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4" style="width: 380px; border-radius: 1rem;">
+        <div class="card-body text-center">
+            <h4 class="mb-3">Deseja realmente excluir?</h4>
+            <p class="mb-4"><strong>@Model.Nome</strong> será removido da sua lista de contatos.</p>
+
+            <div class="d-flex gap-2">
+                <a class="btn btn-secondary w-50" asp-controller="Contatos" asp-action="Index">Cancelar</a>
+                <a class="btn btn-danger w-50" asp-route-id="@Model.Id" asp-controller="Contatos" asp-action="Apagar">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>

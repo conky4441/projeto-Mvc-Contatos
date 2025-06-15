@@ -1,0 +1,35 @@
+﻿@model ContatoModel
+@{
+    ViewData["Title"] = "Editar Contato";
+} 
+
+<h1 class="h3 mb-4" style="font-weight: 400">Editar Contato</h1>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-controller="Contatos" asp-action="Editar" method="post">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome">
+                @Html.ValidationMessageFor(a => a.Nome, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" asp-for="Email" class="form-control" placeholder="Digite o e-mail">
+                @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="text" asp-for="Telefone" class="form-control" placeholder="Digite o Login">
+                @Html.ValidationMessageFor(a => a.Telefone, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success flex-fill">Salvar</button>
+                <a class="btn btn-secondary flex-fill" asp-controller="Users" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>

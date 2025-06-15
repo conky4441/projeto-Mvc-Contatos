@@ -1,0 +1,30 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+# Ignorar arquivos de configuração sensíveis
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+*.user
+
+# Ignorar pastas geradas
+bin/
+obj/
+packages/
+
+# Ignorar arquivos de ambiente local
+.env
+
+# Ignorar arquivos de build e logs
+*.log
+*.cache
+TestResults/
+
+# Ignorar arquivos temporários ou específicos (se necessário)
+/ProjetoMVC.Api/Views/Shared/_LayoutLogin.cshtml
+
+# Ignorar arquivos do Visual Studio
+.vs/
+*.suo
+*.sln.docstates

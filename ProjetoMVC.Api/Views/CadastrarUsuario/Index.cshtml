@@ -1,0 +1,64 @@
+﻿@using ProjetoMVC.Api.Enums
+@model UserModel
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Novo usuário";
+}
+
+
+<div class="d-flex justify-content-center align-items-center flex-grow-1">
+    <div class="card shadow p-4" style="min-width: 400px; border-radius: 1rem;">
+        <div class="text-center mb-4">
+            <h2>Cadastrar Usuário</h2>
+            <p class="text-muted mb-0">Preencha os dados abaixo para criar uma conta</p>
+        </div>
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["MensagemErro"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <form asp-controller="CadastrarUsuario" asp-action="Cadastrar" method="post">
+            <div class="form-group mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" asp-for="Nome" class="form-control" placeholder="Seu nome">
+                @Html.ValidationMessageFor(a => a.Nome, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label">E-mail</label>
+                <input type="email" asp-for="Email" class="form-control" placeholder="Seu e-mail">
+                @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label">Login</label>
+                <input type="text" asp-for="Login" class="form-control" placeholder="Digite seu login">
+                @Html.ValidationMessageFor(a => a.Login, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label">Tipo de Conta</label>
+                <select asp-for="TipoConta" class="form-select">
+                    <option value="">Selecione</option>
+                    <option value="@TipoConta.Admin">Administrador</option>
+                    <option value="@TipoConta.Default">Normal</option>
+                </select>
+                @Html.ValidationMessageFor(a => a.TipoConta, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="form-label">Senha</label>
+                <input type="password" asp-for="Senha" class="form-control" placeholder="Digite sua senha">
+                @Html.ValidationMessageFor(a => a.Senha, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a class="btn btn-secondary" asp-controller="Users" asp-action="Index" role="button">Voltar</a>         
+            </div>
+        </form>
+    </div>
+</div>

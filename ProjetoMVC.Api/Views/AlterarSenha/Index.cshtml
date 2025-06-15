@@ -1,0 +1,57 @@
+﻿@using ProjetoMVC.Api.Dtos
+
+@model AlterarSenhaDto
+@{
+    ViewData["Title"] = "Alterar Senha";
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+
+        @TempData["MensagemSucesso"]
+
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+
+        @TempData["MensagemErro"]
+
+    </div>
+}
+<h1 class="h3 mb-4" style="font-weight: 400">Alterar Senha</h1>
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-controller="AlterarSenha" asp-action="AlterarSenha" method="post">
+            <div class="mb-3">
+                <label for="senha">Senha atual</label>
+                <input type="password" class="form-control" asp-for="AntigaSenha" id="senha" placeholder="Senha atual">
+                @Html.ValidationMessageFor(x => x.AntigaSenha)
+            </div>
+
+            <div class="mb-3">
+                <label for="novaSenha">Nova Senha </label>
+                <input type="password" class="form-control" asp-for="NovaSenha" id="senha" placeholder="Digite a nova senha">
+                @Html.ValidationMessageFor(x => x.NovaSenha)
+            </div>
+
+            <div class="mb-3">
+                <label for="novaSenhaConfirma">Confirme a nova senha</label>
+                <input type="password" class="form-control" asp-for="NovaSenhaConfirma" id="senha" placeholder="Digite a senha novamente">
+                @Html.ValidationMessageFor(x => x.NovaSenhaConfirma)
+            </div>
+
+            <div class="d-flex gap-2">
+                <a class="btn btn-secondary flex-fill" asp-controller="Contatos" asp-action="Index">Voltar</a>
+                <button type="submit" class="btn btn-success flex-fill">Alterar</button>
+            </div>
+        </form>
+    </div>
+</div>

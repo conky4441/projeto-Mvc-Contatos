@@ -1,0 +1,30 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Página inicial";
+    var mostrarGrafico = (ViewBag.PerfilUsuario == "Admin" && (int)ViewBag.TotalUsuarios > 0 || (int)ViewBag.TotalContatos > 0);
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Bem-vindo, @Model.Nome</h1>
+        <p style="font-size: 1.1rem">Ao seu gerenciador personalizado de contatos!</p>
+    </div>
+
+    @if (mostrarGrafico)
+    {
+        <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 300px);">
+            <div style="max-width: 500px; width: 100%;">
+                <canvas id="graficoDados" width="400" height="400"></canvas>
+            </div>
+        </div>
+    }
+
+</div>
