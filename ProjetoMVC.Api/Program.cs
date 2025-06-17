@@ -18,8 +18,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.Configure<SmtpSettings>(
-    builder.Configuration.GetSection("EmailSettings"));
+
+var smtpSettings = new SmtpSettings
+{
+    SmtpServer = Environment.GetEnvironmentVariable("SMTP_SERVER") ?? "",
+    SmtpPort = int.Parse(Environment.GetEnvironmentVariable("SMTP_PORT") ?? "0"),
+    FromEmail = Environment.GetEnvironmentVariable("EMAIL_FROM") ?? "",
+    FromName = Environment.GetEnvironmentVariable("EMAIL_FROM_NAME") ?? "",
+    Username = Environment.GetEnvironmentVariable("EMAIL_USERNAME") ?? "",
+    Password = Environment.GetEnvironmentVariable("EMAIL_PASSWORD") ?? ""
+};
+
+builder.Services.AddSingleton(smtpSettings);
 
 builder.Services.AddScoped<ISessao, Sessao>();
 builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
@@ -34,6 +44,9 @@ builder.Services.AddSession(a =>
 });
 
 var app = builder.Build();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}");
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
