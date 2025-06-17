@@ -28,3 +28,4 @@ TestResults/
 .vs/
 *.suo
 *.sln.docstates
+docker-compose.yml
