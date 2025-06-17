@@ -21,9 +21,6 @@ packages/
 *.cache
 TestResults/
 
-# Ignorar arquivos temporários ou específicos (se necessário)
-/ProjetoMVC.Api/Views/Shared/_LayoutLogin.cshtml
-
 # Ignorar arquivos do Visual Studio
 .vs/
 *.suo
