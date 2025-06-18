@@ -27,7 +27,7 @@
 
             <form asp-action="Entrar" asp-controller="Login" method="post">
                 <div class="mb-3">
-                    <label for="login" class="form-label">Login/E-mail</label>
+                    <label for="login" class="form-label">Login ou E-mail</label>
                     <input type="text" class="form-control" asp-for="Login" id="login" placeholder="Digite seu login ou e-mail">
                     @Html.ValidationMessageFor(x => x.Login, "", new { @class = "text-danger" })
                 </div>

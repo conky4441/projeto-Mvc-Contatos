@@ -61,7 +61,6 @@ namespace ProjetoMVC.Api.Repositories
             return userDb;
 
         }
-
         public bool ApagarUser(int id)
         {
             var user = BuscarPorId(id);

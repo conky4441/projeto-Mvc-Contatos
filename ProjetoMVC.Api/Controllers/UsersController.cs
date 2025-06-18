@@ -30,6 +30,17 @@ namespace ProjetoMVC.Api.Controllers
         {
             try
             {
+                if (id == _sessao.BuscarSessao().Id)
+                {
+                    if (_userRepository.ApagarUser(id))
+                    {
+                        _sessao.FinalizarSessao();
+                        TempData["MensagemSucesso"] = "Usuário apagado com sucesso";
+                        return RedirectToAction("Index", "Login");
+                    }
+                    TempData["MensagemErro"] = "Houve um erro ao apagar o usuário";
+                    return RedirectToAction("Index");
+                }
                 if (_userRepository.ApagarUser(id))
                 {
                     TempData["MensagemSucesso"] = "Usuário apagado com sucesso";
@@ -105,6 +116,6 @@ namespace ProjetoMVC.Api.Controllers
             }
 
         }
-       
+
     }
 }
