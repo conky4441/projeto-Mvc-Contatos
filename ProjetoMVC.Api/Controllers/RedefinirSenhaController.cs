@@ -9,7 +9,7 @@ namespace ProjetoMVC.Api.Controllers
     [UserDeslogadoFilter]
     public class RedefinirSenhaController(IUserRepository repository, IEmail email) : Controller
     {
-        private readonly IUserRepository _repository = repository;
+        private readonly IUserRepository _userRepository = repository;
         private readonly IEmail _email = email;
         public IActionResult Index()
         {
@@ -22,15 +22,16 @@ namespace ProjetoMVC.Api.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = _repository.BuscarPorEmail(userRedefinir.Email);
+                    var user = _userRepository.BuscarPorEmail(userRedefinir.Email);
                     if (user != null)
                     {
                         var novaSenha = user.GerarNovaSenha();
-                        _repository.EditarUser(user);
+                        
 
                         string mensagem = $"Sua nova senha é: <strong>{novaSenha}</strong>";
                         _email.Enviar(user.Email, "Redefinição de Senha - Sistema", mensagem);
 
+                        _userRepository.EditarUser(user);
                         TempData["MensagemSucesso"] = "Sua nova senha foi encaminhada para seu e-mail";
                         return RedirectToAction("Index", "Login");
                     }
@@ -40,9 +41,9 @@ namespace ProjetoMVC.Api.Controllers
                 }
                 return View("Index", userRedefinir);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                TempData["MensagemErro"] = "Ops, houve um erro ao tentar redefinir sua senha";
+                TempData["MensagemErro"] = $"Ops, houve o seguinte erro ao tentar redefinir sua senha: {e.Message}";
                 return View("Index");
             }
 
